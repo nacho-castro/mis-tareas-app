@@ -27,10 +27,6 @@ public class Task {
     private LocalDate date;
     private Boolean completed;
 
-    public Task(){
-
-    }
-
     public Task(Subject subject, String title, LocalDate date) {
         this.subject = subject;
         this.title = title;
