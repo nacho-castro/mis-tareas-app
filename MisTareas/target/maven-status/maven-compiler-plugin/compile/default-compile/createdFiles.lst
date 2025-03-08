@@ -1,6 +1,8 @@
 com\app\MisTareas\controller\TaskController.class
+com\app\MisTareas\config\CorsConfig$1.class
 com\app\MisTareas\MisTareasApplication.class
 com\app\MisTareas\domain\task\DataCreateTask.class
 com\app\MisTareas\domain\task\Subject.class
+com\app\MisTareas\config\CorsConfig.class
 com\app\MisTareas\domain\task\Task.class
 com\app\MisTareas\domain\task\TaskRepository.class

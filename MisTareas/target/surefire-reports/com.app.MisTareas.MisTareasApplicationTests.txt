@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.app.MisTareas.MisTareasApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.523 s -- in com.app.MisTareas.MisTareasApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.99 s -- in com.app.MisTareas.MisTareasApplicationTests
