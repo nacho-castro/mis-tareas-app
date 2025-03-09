@@ -1,0 +1,66 @@
+/* Large Screens */
+.navtitle h1 {
+    font-size: 3rem;
+    padding-top: 15px;
+}
+
+.descript h4 {
+    font-size: 1.5rem;
+}
+
+.listbox {
+    background-color: #f5f5f5;
+    color: #000;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px 0px;
+    max-width: 750px;
+    font-size: 1.5rem;
+}
+
+/* Medium Screens */
+@media (max-width: 1024px) {
+    .navtitle h1 {
+        font-size: 2.5rem; 
+    }
+
+    .descript h4 {
+        font-size: 1.25rem; 
+    }
+
+    .listbox {
+        font-size: 1.25rem; 
+    }
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+    .navtitle h1 {
+        font-size: 2rem;
+    }
+
+    .descript h4 {
+        font-size: 1.1rem; 
+    }
+
+    .listbox {
+        font-size: 1rem; 
+        padding: 15px 2px; 
+    }
+}
+
+/* Smaller Screens */
+@media (max-width: 480px) {
+    .navtitle h1 {
+        font-size: 1.8rem;
+    }
+
+    .descript h4 {
+        font-size: 1rem; 
+    }
+
+    .listbox {
+        font-size: 0.9rem; 
+        padding: 10px 1px; 
+    }
+}

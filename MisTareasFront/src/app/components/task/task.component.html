@@ -1,0 +1,25 @@
+  <div class="container mb-2">  
+    <div class="card">
+        <div class="card-body row text-black m-0 p-2 align-items-center">
+            
+            <!-- TITLE -->
+            <div class="col-5 text-start">
+                <h2 class="fw-bold m-0">{{task.title}}</h2>
+            </div>
+            
+            <!-- DATE AND SUBJECT -->
+            <div class="col-5 text-center">
+                <h2 class="mb-2 text-white">
+                    <span class="badge bg-danger">{{ task?.date | date: 'MMMM dd' }}</span>
+                </h2>
+                <span>{{task.subject}}</span>
+            </div>
+            
+            <!-- CHECKBOX -->
+            <div class="checkk col-2 d-flex align-items-center justify-content-end">
+                <input type="checkbox" class="form-check-input" [checked]="task.completed" (change)="completeTask(task)">
+            </div>
+
+        </div>
+    </div>
+</div>

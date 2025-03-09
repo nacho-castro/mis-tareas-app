@@ -1,0 +1,39 @@
+.container {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0px 5px;
+    width: 25%;
+}
+
+::ng-deep.special-date {
+    background: rgb(2, 2, 103) !important;
+    border-radius: 50%;
+    color: white !important;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 0px 5px;
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 0px 5px;
+        width: 75%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 0px 5px;
+        width: 100%;
+    }
+}
