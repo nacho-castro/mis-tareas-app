@@ -5,10 +5,16 @@
     width: 25%;
 }
 
-::ng-deep.special-date {
-    background: rgb(2, 2, 103) !important;
-    border-radius: 50%;
+::ng-deep .today-highlight {
+    background-color: yellow !important;
+    color: black !important;
+    border-radius: 50% !important;
+}
+
+::ng-deep .task-highlight {
+    background-color: rgb(242, 49, 49) !important;
     color: white !important;
+    border-radius: 50% !important;
 }
 
 @media (max-width: 1024px) {

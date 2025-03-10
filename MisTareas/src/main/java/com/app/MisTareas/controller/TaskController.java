@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +39,7 @@ public class TaskController {
         return ResponseEntity.ok(taskRepository.findByCompletedTrueOrderByDateAsc());
     }
 
+    //Toggle Task Completed
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> updateTask(@PathVariable Long id) {
