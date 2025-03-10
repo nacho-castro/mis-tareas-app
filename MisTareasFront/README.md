@@ -1,27 +1,45 @@
-# MisTareasFront
+# MisTareas - Frontend in Angular 17 with Firebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+This project is a frontend of a **ToDoList** application developed in **Angular 17**, which interacts with **Firebase** to manage the database. It allows CRUD operations on Tasks (create, read, update and delete). The application is structured into three main components:
 
-## Development server
+1. **My Tasks**: Displays a list of pending tasks.
+2. **My Calendar**: Shows tasks in a calendar view, with color coding for different statuses.
+3. **My Completed Tasks**: Displays tasks that have been marked as completed.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
 
-## Code scaffolding
+- **Angular 17**: Main framework for frontend development.
+- **Firebase**: Used for hosting the frontend and static content.
+- **Spring Boot**: Backend API handling CRUD operations for tasks.
+- **Render**: Hosting service for the Spring Boot backend.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Service Methods (task.service.ts)
 
-## Build
+The `TaskService` provides methods to interact with the backend API (deployed on Render). It handles all the CRUD operations for tasks:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```typescript
+  //GET: Incomplete Tasks
+  getIncompleteTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiUrl);
+  }
 
-## Running unit tests
+  //GET: Completed Tasks
+  getCompletedTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/completed`);
+  }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  //POST: Create Task
+  createTask(task: Task): Observable<void> {
+    return this.http.post<void>(this.apiUrl, task);
+  }
 
-## Running end-to-end tests
+  //PUT: Toggle Task completed
+  completeTask(id: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, {});
+  }
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  //DELETE: Delete Task
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+}
