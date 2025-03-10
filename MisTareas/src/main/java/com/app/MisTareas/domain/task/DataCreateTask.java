@@ -11,7 +11,6 @@ public record DataCreateTask(
     @NotNull
     Subject subject,
     @NotNull
-    @Future
     LocalDate date
 ) {
 }

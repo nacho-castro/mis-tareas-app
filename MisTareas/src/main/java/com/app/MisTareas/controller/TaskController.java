@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
-//@CrossOrigin(origins = "https://mis-tareas-d40a2.web.app")
 public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
@@ -36,11 +36,26 @@ public class TaskController {
         return ResponseEntity.ok(taskRepository.findByCompletedTrueOrderByDateAsc());
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> toggleTaskCompleted(@PathVariable Long id) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        if (optionalTask.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Task task = optionalTask.get();
+        task.setCompleted(!task.isCompleted());
+        taskRepository.save(task);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity completeTask(@PathVariable Long id){
-        Task task = taskRepository.getReferenceById(id);
-        task.complete();
+    public ResponseEntity<Void> completeTask(@PathVariable Long id){
+        if (!taskRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        taskRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }

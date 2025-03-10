@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from './task.service';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,

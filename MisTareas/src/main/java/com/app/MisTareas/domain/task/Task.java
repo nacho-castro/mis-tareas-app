@@ -61,7 +61,7 @@ public class Task {
         return date;
     }
 
-    public Boolean getCompleted() {
+    public Boolean isCompleted() {
         return completed;
     }
 
