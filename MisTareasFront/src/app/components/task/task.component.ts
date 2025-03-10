@@ -27,13 +27,15 @@ export class TaskComponent {
   @Input() task: any;
 
   completeTask(task:any):void {
+    const updatedTask = { ...task, completed: !task.completed }; 
+
     this.taskService.completeTask(task.id).subscribe({
       next: () => {
-        console.log('Tarea marcada como completa');
-        window.location.reload();
+        console.log('Tarea actualizada correctamente');
+        task.completed = updatedTask.completed;
       },
       error: (err) => {
-        console.error('Error al eliminar la tarea', err);
+        console.error('Error al actualizar la tarea!', err);
       }
     });
   }

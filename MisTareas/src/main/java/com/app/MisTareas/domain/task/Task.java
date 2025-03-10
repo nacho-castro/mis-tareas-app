@@ -41,8 +41,8 @@ public class Task {
         this.completed = false;
     }
 
-    public void complete(){
-        this.completed = true;
+    public void toggleTaskCompleted(){
+        this.completed = !this.completed;
     }
 
     public Long getId() {

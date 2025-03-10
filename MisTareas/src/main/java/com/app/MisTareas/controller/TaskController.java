@@ -1,6 +1,7 @@
 package com.app.MisTareas.controller;
 
 import com.app.MisTareas.domain.task.DataCreateTask;
+import com.app.MisTareas.domain.task.DataUpdateTask;
 import com.app.MisTareas.domain.task.Task;
 import com.app.MisTareas.domain.task.TaskRepository;
 import jakarta.transaction.Transactional;
@@ -49,9 +50,23 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> updateTask(@PathVariable Long id) {
+        Optional<Task> taskOpt = taskRepository.findById(id);
+        if (taskOpt.isPresent()) {
+            Task task = taskOpt.get();
+            task.toggleTaskCompleted();
+            taskRepository.save(task); //Save
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> completeTask(@PathVariable Long id){
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
         if (!taskRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
