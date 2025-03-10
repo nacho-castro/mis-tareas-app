@@ -44,7 +44,7 @@ public class TaskController {
         if (taskOpt.isPresent()) {
             Task task = taskOpt.get();
             task.toggleTaskCompleted();
-            taskRepository.save(task); //Save
+            taskRepository.save(task);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

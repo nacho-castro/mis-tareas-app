@@ -26,7 +26,7 @@ export class TaskComponent {
 
   @Input() task: any;
 
-  completeTask(task:any):void {
+  updateTask(task:any):void {
     const updatedTask = { ...task, completed: !task.completed }; 
 
     this.taskService.completeTask(task.id).subscribe({
