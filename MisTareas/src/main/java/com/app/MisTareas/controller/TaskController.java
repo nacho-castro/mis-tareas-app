@@ -39,19 +39,6 @@ public class TaskController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> toggleTaskCompleted(@PathVariable Long id) {
-        Optional<Task> optionalTask = taskRepository.findById(id);
-        if (optionalTask.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        Task task = optionalTask.get();
-        task.setCompleted(!task.isCompleted());
-        taskRepository.save(task);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("/{id}")
-    @Transactional
     public ResponseEntity<Void> updateTask(@PathVariable Long id) {
         Optional<Task> taskOpt = taskRepository.findById(id);
         if (taskOpt.isPresent()) {
