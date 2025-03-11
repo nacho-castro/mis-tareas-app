@@ -18,6 +18,7 @@ interface Subject {
 }
 
 interface Task {
+  id: number,
   title: string;
   subject: string;
   date: string;
@@ -58,6 +59,10 @@ export class EditDialogComponent {
     private taskService: TaskService,
     @Inject(MAT_DIALOG_DATA) public data: Task
   ) {
+    if (!data || !data.id) {
+      console.error('Error: No se recibió una tarea válida para editar.');
+      this.closeDialog();
+    }
     this.editTask = { ...data };
    }
 
@@ -66,11 +71,15 @@ export class EditDialogComponent {
   }
 
   saveTask() {
+    if (!this.editTask.id) {
+      alert('Error: La tarea no tiene un ID válido.');
+      return;
+    }
+
     this.taskService.updateTask(this.editTask).subscribe({
       next: () => {
         alert('TAREA EDITADA');
         this.dialogRef.close(this.editTask);
-        window.location.reload();
       },
       error: (error) => {
         console.error('Error al editar la tarea', error);

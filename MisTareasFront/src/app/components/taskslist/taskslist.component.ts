@@ -29,4 +29,12 @@ export class TaskslistComponent implements OnInit{
       }
     );
   }
+
+  onTaskDeleted(): void {
+    this.getTasks();
+  }
+  
+  onTaskCompleted(): void {
+    this.getTasks();
+  }
 }

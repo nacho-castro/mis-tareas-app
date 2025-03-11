@@ -29,4 +29,12 @@ export class CompletedlistComponent {
       }
     );
   }
+
+  onTaskDeleted(): void {
+    this.getTasks();
+  }
+  
+  onTaskCompleted(): void {
+    this.getTasks();
+  }
 }

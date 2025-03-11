@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe, CommonModule } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import localeEs from '@angular/common/locales/es'; //Import locale Spanish
@@ -29,6 +29,8 @@ export class TaskComponent {
   ) { }
 
   @Input() task: any;
+  @Output() taskDeleted = new EventEmitter<void>(); 
+  @Output() taskCompleted = new EventEmitter<void>();
 
   //Toggle Task completed
   completeTask(task: any): void {
@@ -37,6 +39,7 @@ export class TaskComponent {
     this.taskService.completeTask(task.id).subscribe({
       next: () => {
         task.completed = updatedTask.completed;
+        this.taskCompleted.emit(); 
       },
       error: (err) => {
         console.error('Error al completar la tarea!', err);
@@ -47,8 +50,8 @@ export class TaskComponent {
   deleteTask(task: any): void {
     this.taskService.deleteTask(task.id).subscribe({
       next: () => {
-        console.log('Tarea eliminada correctamente');
         alert('TAREA ELIMINADA');
+        this.taskDeleted.emit();
       },
       error: (err) => {
         console.error('Error al eliminar la tarea!', err);

@@ -4,6 +4,9 @@
     </div>
 
     <div *ngFor="let task of tasks">
-        <app-task [task]="task"></app-task>
+        <app-task [task]="task"
+         (taskDeleted)="onTaskDeleted()" 
+         (taskCompleted)="onTaskCompleted()">
+        </app-task>
     </div>
 </div>

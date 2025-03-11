@@ -36,7 +36,7 @@ export class TaskService {
     if (!task.id) {
       throw new Error('El ID de la tarea es obligatorio para actualizarla.');
     }
-    return this.http.put<Task>(`${this.apiUrl}`, task);
+    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task);
   }
 
   //DELETE
