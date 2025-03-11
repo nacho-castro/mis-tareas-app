@@ -54,10 +54,10 @@ public class TaskController {
     }
 
     //Update Task
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> updateTask(@RequestBody @Valid DataUpdateTask saveTask) {
-        Optional<Task> taskOpt = taskRepository.findById(saveTask.id());
+    public ResponseEntity<Void> updateTask(@PathVariable Long id, @RequestBody @Valid DataUpdateTask saveTask) {
+        Optional<Task> taskOpt = taskRepository.findById(id);
         if (taskOpt.isPresent()) {
             Task task = taskOpt.get();
             task.updateTask(saveTask);
@@ -66,6 +66,7 @@ public class TaskController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/{id}")
     @Transactional

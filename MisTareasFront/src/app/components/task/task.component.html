@@ -1,13 +1,14 @@
 <div class="container mb-2">
     <div class="card">
         <div class="card-body row text-black m-0 p-2 align-items-center">
-            <!-- BUTTONS -->
-            <div class="col-1 text-center">
-                <button type="button" class="btn btn-warning" (click)="openEditTaskDialog(task)">
+
+            <!-- BUTTONS (Edit, Delete) -->
+            <div class="col-auto d-flex flex-column me-2">
+                <button type="button" class="btn btn-link p-0 border-0 mb-1 bg-transparent text-warning" (click)="openEditTaskDialog(task)">
                     <i class="fa-solid fa-pen"></i>
                 </button>
 
-                <button type="button" class="btn btn-danger" (click)="deleteTask(task)">
+                <button type="button" class="btn btn-link p-0 border-0 bg-transparent text-danger" (click)="deleteTask(task)">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
@@ -20,13 +21,13 @@
             </div>
 
             <!-- DATE AND SUBJECT -->
-            <div class="col-5 text-center">
+            <div class="col-4 text-center">
                 <h2 class="mb-2 text-white">
                     <span class="badge" [ngClass]="task.completed ? 'bg-success' : 'bg-danger'">
                         {{ task?.date | date: 'MMMM dd' }}
                     </span>
                 </h2>
-                <span>{{task.subject}}</span>
+                <span class="fs-6">{{task.subject}}</span>
             </div>
 
             <!-- CHECKBOX -->

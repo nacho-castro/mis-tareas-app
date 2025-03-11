@@ -48,6 +48,7 @@ export class TaskComponent {
     this.taskService.deleteTask(task.id).subscribe({
       next: () => {
         console.log('Tarea eliminada correctamente');
+        alert('TAREA ELIMINADA');
       },
       error: (err) => {
         console.error('Error al eliminar la tarea!', err);
@@ -56,7 +57,11 @@ export class TaskComponent {
   }
 
   openEditTaskDialog(task:Task){
-      this.matDialog.open(EditDialogComponent,{width:'400px',height:'480px'});
+      this.matDialog.open(EditDialogComponent,{
+        width:'400px',
+        height:'480px',
+        data: task
+      });
   }
 
 }
