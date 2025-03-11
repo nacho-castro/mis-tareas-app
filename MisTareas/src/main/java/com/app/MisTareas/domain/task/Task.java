@@ -41,6 +41,22 @@ public class Task {
         this.completed = false;
     }
 
+    public void updateTask(DataUpdateTask dataUpdateTask){
+        if (dataUpdateTask.title() != null) {
+            this.title = dataUpdateTask.title();
+        }
+        if (dataUpdateTask.subject() != null) {
+            try {
+                this.subject = Subject.valueOf(dataUpdateTask.subject());
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Materia inválida: " + dataUpdateTask.subject());
+            }
+        }
+        if (dataUpdateTask.date() != null) {
+            this.date = dataUpdateTask.date();
+        }
+    }
+
     public void toggleTaskCompleted(){
         this.completed = !this.completed;
     }

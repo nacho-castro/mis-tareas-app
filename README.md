@@ -18,23 +18,6 @@ The app allows users to manage tasks with CRUD operations and provides three mai
 
 - **Spring Boot**: The backend API is built using Spring Boot. It handles CRUD operations for tasks, including creating, retrieving, updating, and deleting tasks.
 - **Render**: Hosting service used to deploy the Spring Boot backend.
-  
-### Features
-
-#### Frontend (Angular 17)
-
-1. **My Tasks**: Displays a list of pending tasks.
-2. **My Calendar**: Shows tasks in a calendar view with color coding for different task statuses.
-3. **My Completed**: Displays tasks that have been marked as completed.
-
-#### Backend (Spring Boot)
-
-1. **Task API**: Handles CRUD operations for tasks.
-    - **GET**: Fetch incomplete tasks.
-    - **GET**: Fetch completed tasks.
-    - **POST**: Create a new task.
-    - **PUT**: Update task (mark as completed).
-    - **DELETE**: Remove a task.
 
 ## Project Structure
 
@@ -59,5 +42,6 @@ The backend is a **Spring Boot** application with a simple REST API that interac
 - **GET /tasks**: Retrieves all pending tasks.
 - **GET /tasks/completed**: Retrieves all completed tasks.
 - **POST /tasks**: Creates a new task by sending a JSON body with the task details (e.g., title, date).
-- **PUT /tasks/{id}**: Marks a task as completed.
+- **PUT /tasks/{id}/complete**: Marks a task as completed by ID.
+- **PUT /tasks**: Updates an existing task by sending a JSON body with the task details.
 - **DELETE /tasks/{id}**: Deletes a task by ID.

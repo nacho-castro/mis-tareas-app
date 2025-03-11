@@ -66,13 +66,13 @@ export class AddDialogComponent {
   addTask() {
     this.taskService.createTask(this.newTask).subscribe({
       next: () => {
-        //alert('Tarea guardada');
-        this.dialogRef.close();
+        alert('TAREA GUARDADA');
+        this.closeDialog();
         window.location.reload();
       },
       error: (error) => {
         console.error('Error al guardar la tarea', error);
-        alert('Hubo un error al guardar la tarea');
+        alert('ERROR al guardar la tarea');
       }
     });
   }

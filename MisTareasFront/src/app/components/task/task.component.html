@@ -1,9 +1,19 @@
 <div class="container mb-2">
     <div class="card">
         <div class="card-body row text-black m-0 p-2 align-items-center">
+            <!-- BUTTONS -->
+            <div class="col-1 text-center">
+                <button type="button" class="btn btn-warning" (click)="openEditTaskDialog(task)">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+
+                <button type="button" class="btn btn-danger" (click)="deleteTask(task)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
 
             <!-- TITLE -->
-            <div class="col-5 text-start">
+            <div class="col-4 text-start">
                 <h2 class="fw-bold m-0" [ngClass]="{'text-decoration-line-through': task.completed}">
                     {{task.title}}
                 </h2>
@@ -22,7 +32,7 @@
             <!-- CHECKBOX -->
             <div class="checkk col-2 d-flex align-items-center justify-content-end">
                 <input type="checkbox" class="form-check-input" [checked]="task.completed"
-                    (change)="updateTask(task)">
+                    (change)="completeTask(task)">
             </div>
 
         </div>

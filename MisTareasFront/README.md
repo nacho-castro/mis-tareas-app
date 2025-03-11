@@ -10,8 +10,6 @@ This project is a frontend of a **ToDoList** application developed in **Angular 
 
 - **Angular 17**: Main framework for frontend development.
 - **Firebase**: Used for hosting the frontend and static content.
-- **Spring Boot**: Backend API handling CRUD operations for tasks.
-- **Render**: Hosting service for the Spring Boot backend.
 
 ## Service Methods (task.service.ts)
 
@@ -35,11 +33,18 @@ The `TaskService` provides methods to interact with the backend API (deployed on
 
   //PUT: Toggle Task completed
   completeTask(id: number): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, {});
+    return this.http.put<void>(`${this.apiUrl}/${id}/complete`, {});
   }
 
-  //DELETE: Delete Task
+  //PUT: Edit Task
+  updateTask(task: Task): Observable<Task> {
+    if (!task.id) {
+      throw new Error('El ID de la tarea es obligatorio para actualizarla.');
+    }
+    return this.http.put<Task>(`${this.apiUrl}`, task);
+  }
+
+  //DELETE
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-}

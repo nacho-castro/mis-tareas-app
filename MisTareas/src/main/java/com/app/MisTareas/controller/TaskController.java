@@ -40,14 +40,27 @@ public class TaskController {
     }
 
     //Toggle Task Completed
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/complete")
     @Transactional
-    public ResponseEntity<Void> updateTask(@PathVariable Long id) {
+    public ResponseEntity<Void> completeTask(@PathVariable Long id) {
         Optional<Task> taskOpt = taskRepository.findById(id);
         if (taskOpt.isPresent()) {
             Task task = taskOpt.get();
             task.toggleTaskCompleted();
-            taskRepository.save(task);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    //Update Task
+    @PutMapping
+    @Transactional
+    public ResponseEntity<Void> updateTask(@RequestBody @Valid DataUpdateTask saveTask) {
+        Optional<Task> taskOpt = taskRepository.findById(saveTask.id());
+        if (taskOpt.isPresent()) {
+            Task task = taskOpt.get();
+            task.updateTask(saveTask);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
@@ -57,9 +70,6 @@ public class TaskController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> deleteTask(@PathVariable Long id){
-        if (!taskRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
         taskRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }

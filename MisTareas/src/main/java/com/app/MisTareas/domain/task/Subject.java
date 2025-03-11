@@ -9,5 +9,7 @@ public enum Subject {
     BIOLOGIA,
     EDFISICA,
     CATEQUESIS,
-    INGLES
+    INGLES,
+    PLASTICA,
+    CIUDADANIA
 }

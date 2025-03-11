@@ -28,7 +28,15 @@ export class TaskService {
 
   //PUT: Toggle Task completed
   completeTask(id: number): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, {});
+    return this.http.put<void>(`${this.apiUrl}/${id}/complete`, {});
+  }
+
+  //PUT: Edit Task
+  updateTask(task: Task): Observable<Task> {
+    if (!task.id) {
+      throw new Error('El ID de la tarea es obligatorio para actualizarla.');
+    }
+    return this.http.put<Task>(`${this.apiUrl}`, task);
   }
 
   //DELETE

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="form text-center">
+        <div class="header">
+            <button mat-icon-button class="close-button" type="button" (click)="closeDialog()">
+                <mat-icon style="color: red;">close</mat-icon>
+            </button>
+        </div>
+
+        <div mat-dialog-title>
+            <h1>Editar Tarea</h1>
+        </div>
+
+        <!-- FORM WITH ngForm -->
+        <form #taskForm="ngForm" (ngSubmit)="saveTask()" autocomplete="off">
+            <div mat-dialog-content>
+                <!-- TITLE -->
+                <mat-form-field class="input-box" appearance="fill">
+                    <mat-label>Título</mat-label>
+                    <input type="text" matInput placeholder="Nombre de la tarea" [(ngModel)]="editTask.title"
+                        name="title" required #title="ngModel" />
+                    <mat-error *ngIf="title.invalid && title.touched">El título es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <!-- SUBJECT -->
+                <mat-form-field class="input-box" appearance="fill">
+                    <mat-label>Materia</mat-label>
+                    <mat-select [(ngModel)]="editTask.subject" name="subject" required #subject="ngModel">
+                        <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+                            {{ subject.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="subject.invalid && subject.touched">Selecciona una materia.</mat-error>
+                </mat-form-field>
+
+                <!-- DATE -->
+                <mat-form-field class="input-box" appearance="fill">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="editTask.date" name="date" required
+                        #dueDate="ngModel" />
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="dueDate.invalid && dueDate.touched">Selecciona una fecha válida.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- SUBMIT -->
+            <div mat-dialog-actions class="footer">
+                <button type="submit" class="btn btn-success" [disabled]="taskForm.invalid">
+                    EDITAR <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

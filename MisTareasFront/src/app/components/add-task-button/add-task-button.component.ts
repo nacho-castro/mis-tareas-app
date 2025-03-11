@@ -13,7 +13,7 @@ import { MatButtonModule} from '@angular/material/button';
 export class AddTaskButtonComponent {
   constructor(private matDialog: MatDialog) { }
 
-  openTaskDialog(){
+  openAddTaskDialog(){
       this.matDialog.open(AddDialogComponent,{width:'400px',height:'480px'});
   }
 }
