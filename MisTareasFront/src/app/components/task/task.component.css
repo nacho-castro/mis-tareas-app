@@ -1,7 +1,23 @@
-.checkk input {
+.check input {
     transform: scale(3);
 }
 
 h2.text-decoration-line-through {
     text-decoration: line-through !important;
+}
+
+.subject{
+    font-size: medium;
+}
+
+@media (max-width: 768px){
+    .check input {
+        transform: scale(2);
+    }
+    .subject{
+        font-size:x-small;
+    }
+    .title{
+        font-size: small;
+    }
 }

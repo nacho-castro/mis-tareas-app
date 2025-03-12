@@ -11,5 +11,6 @@ public enum Subject {
     CATEQUESIS,
     INGLES,
     PLASTICA,
-    CIUDADANIA
+    CIUDADANIA,
+    INFORMATICA
 }

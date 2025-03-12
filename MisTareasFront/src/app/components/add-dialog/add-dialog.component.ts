@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../task.service';
 import { FormsModule } from '@angular/forms';
+import { SubjectService } from '../../subject.service';
 
 interface Subject {
   value: string;
@@ -43,21 +44,21 @@ interface Task {
   styleUrl: './add-dialog.component.css'
 })
 export class AddDialogComponent {
-  subjects: Subject[] = [
-    { value: 'HISTORIA', viewValue: 'HISTORIA🏺' },
-    { value: 'GEOGRAFIA', viewValue: 'GEOGRAFIA🌍' },
-    { value: 'BIOLOGIA', viewValue: 'BIOLOGIA🧬' },
-    { value: 'FISICOQUIMICA', viewValue: 'FISICOQUIMICA🧪' },
-    { value: 'MATEMATICA', viewValue: 'MATEMATICA🔢' },
-    { value: 'PDL', viewValue: 'PDL📚' },
-  ];
+  subjects: Subject[] = [];
 
   newTask: Task = { title: '', subject: '', date: '' };
 
   constructor(
     private dialogRef: MatDialogRef<AddDialogComponent>,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private subjectService: SubjectService
   ) { }
+
+  ngOnInit() {
+    this.subjectService.getSubjects().subscribe((data) => {
+      this.subjects = data;
+    });
+  }
 
   closeDialog() {
     this.dialogRef.close();

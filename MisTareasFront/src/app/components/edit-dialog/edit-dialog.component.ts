@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../task.service';
 import { FormsModule } from '@angular/forms';
+import { SubjectService } from '../../subject.service';
 
 interface Subject {
   value: string;
@@ -45,18 +46,12 @@ interface Task {
 })
 export class EditDialogComponent {
   editTask: Task;
-  subjects: Subject[] = [
-    { value: 'HISTORIA', viewValue: 'HISTORIA🏺' },
-    { value: 'GEOGRAFIA', viewValue: 'GEOGRAFIA🌍' },
-    { value: 'BIOLOGIA', viewValue: 'BIOLOGIA🧬' },
-    { value: 'FISICOQUIMICA', viewValue: 'FISICOQUIMICA🧪' },
-    { value: 'MATEMATICA', viewValue: 'MATEMATICA🔢' },
-    { value: 'PDL', viewValue: 'PDL📚' },
-  ];
+  subjects: Subject[] = []
 
   constructor(
     private dialogRef: MatDialogRef<EditDialogComponent>,
     private taskService: TaskService,
+    private subjectService: SubjectService,
     @Inject(MAT_DIALOG_DATA) public data: Task
   ) {
     if (!data || !data.id) {
@@ -65,6 +60,12 @@ export class EditDialogComponent {
     }
     this.editTask = { ...data };
    }
+
+   ngOnInit() {
+    this.subjectService.getSubjects().subscribe((data) => {
+      this.subjects = data;
+    });
+  }
 
   closeDialog() {
     this.dialogRef.close();
