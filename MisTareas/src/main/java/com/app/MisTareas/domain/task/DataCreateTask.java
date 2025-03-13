@@ -9,7 +9,7 @@ public record DataCreateTask(
     @NotBlank
     String title,
     @NotNull
-    Subject subject,
+    String subject,
     @NotNull
     LocalDate date
 ) {

@@ -21,13 +21,12 @@ public class Task {
 
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    private Subject subject;
+    private String subject;
 
     private LocalDate date;
     private Boolean completed;
 
-    public Task(Subject subject, String title, LocalDate date) {
+    public Task(String subject, String title, LocalDate date) {
         this.subject = subject;
         this.title = title;
         this.date = date;
@@ -46,11 +45,7 @@ public class Task {
             this.title = dataUpdateTask.title();
         }
         if (dataUpdateTask.subject() != null) {
-            try {
-                this.subject = Subject.valueOf(dataUpdateTask.subject());
-            } catch (IllegalArgumentException e) {
-                throw new RuntimeException("Materia inválida: " + dataUpdateTask.subject());
-            }
+            this.subject = dataUpdateTask.subject();
         }
         if (dataUpdateTask.date() != null) {
             this.date = dataUpdateTask.date();
@@ -69,7 +64,7 @@ public class Task {
         return title;
     }
 
-    public Subject getSubject() {
+    public String getSubject() {
         return subject;
     }
 
@@ -89,7 +84,7 @@ public class Task {
         this.title = title;
     }
 
-    public void setSubject(Subject subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 
